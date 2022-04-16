@@ -14,6 +14,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //设置支持的CPU平台
+        ndk{ abiFilters "armeabi-v7a" }
     }
 
     buildTypes {
@@ -29,6 +31,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -40,4 +47,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+
 }
